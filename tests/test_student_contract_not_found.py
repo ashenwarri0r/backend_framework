@@ -2,7 +2,7 @@ from random import randint
 
 from services.university.helpers.student_helper import StudentHelper
 
-STUDENT_ID = str(randint(1, 99))
+STUDENT_ID = str(randint(10, 99))
 EXPECTED_ERROR_TEXT = "not found"
 
 class TestStudentContract:
