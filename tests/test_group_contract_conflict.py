@@ -6,8 +6,8 @@ from services.university.helpers.group_helper import GroupHelper
 faker = Faker()
 
 
-class TestGroupContract:
-    def test_create_group(self, university_api_utils_admin):
+class TestGroupContractConflict:
+    def test_create_group_conflict(self, university_api_utils_admin):
         group_helper = GroupHelper(api_utils=university_api_utils_admin)
 
         group_name = faker.name()

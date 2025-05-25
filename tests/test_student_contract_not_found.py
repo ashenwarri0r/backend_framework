@@ -5,8 +5,8 @@ from services.university.helpers.student_helper import StudentHelper
 STUDENT_ID = str(randint(10, 99))
 EXPECTED_ERROR_TEXT = "not found"
 
-class TestStudentContract:
-    def test_student_contract(self, university_api_utils_admin):
+class TestStudentContractNotFound:
+    def test_student_contract_not_found(self, university_api_utils_admin):
         student_helper = StudentHelper(university_api_utils_admin)
 
         response = student_helper.delete_student(STUDENT_ID)

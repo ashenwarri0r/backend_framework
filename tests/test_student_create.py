@@ -10,7 +10,7 @@ from services.university.university_service import UniversityService
 
 faker = Faker()
 
-class TestStudent:
+class TestStudentCreate:
     def test_student_create(self, university_api_utils_admin):
         Logger.info("Step 1. Create group")
         university_service = UniversityService(api_utils=university_api_utils_admin)
