@@ -48,3 +48,25 @@ jobs:
       - run: docker compose up -d
       - run: docker build -t api-tests .
       - run: docker run --network host api-tests
+
+      - uses: actions/upload-artifact@v4.6.2
+        with:
+          name: allure-results
+          path: /api_framework/allure-results
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/upload-artifact@v4.6.2
+        with:
+          name: allure-results
+          path: /api_framework/allure-results
+
+      - run: docker run --rm -v $(pwd)/report:/api_framework/allure-report api-tests
+      - uses: peaceiris/actions-github-pages@v3.1.12
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
