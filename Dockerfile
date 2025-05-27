@@ -3,7 +3,10 @@ FROM python:3.13-slim
 LABEL version="1.3" author="ashen"
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openjdk-17-jre && \
+    apt-get install -y --no-install-recommends \
+    openjdk-17-jre \
+    curl \
+    tar && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -o allure-2.24.0.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.24.0/allure-commandline-2.24.0.tgz \
