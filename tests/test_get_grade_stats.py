@@ -1,7 +1,6 @@
 import pytest
 from faker import Faker
 
-from conftest import grades_data
 from services.university.models.grade_statistic_request import GradesStatsRequest
 from services.university.university_service import UniversityService
 
