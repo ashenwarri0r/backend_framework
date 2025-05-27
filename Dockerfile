@@ -1,4 +1,4 @@
-LABEL version="1.2" author="ashen"
+LABEL version="1.3" author="ashen"
 
 FROM python:3.13-slim
 
