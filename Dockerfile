@@ -1,6 +1,6 @@
-LABEL version="1.3" author="ashen"
-
 FROM python:3.13-slim
+
+LABEL version="1.3" author="ashen"
 
 WORKDIR /api_framework
 
