@@ -15,8 +15,6 @@ COPY . .
 
 ENV PYTHONPATH="${PYTHONPATH}:/api_framework"
 
-RUN allure generate allure-results -o allure-report --clean
-
 VOLUME /api_framework/allure-report
 
 CMD ["sh", "-c", "pytest --alluredir=allure-results tests/ && allure generate allure-results -o allure-report --clean"]
