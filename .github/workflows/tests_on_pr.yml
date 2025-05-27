@@ -47,11 +47,11 @@ jobs:
       - run: docker run --network host api-tests
       - name: Prepare report data
         run: |
-          mkdir -p allure-report
-          docker run --rm -v $(pwd)/allure-results:/allure-results \
-                 -v $(pwd)/allure-report:/allure-report \
-                 allureapi/allurecli:2.24.0 \
-                 allure generate /allure-results -o /allure-report --clean
+          docker run --rm \
+                 -v $(pwd)/allure-results:/api_framework/allure-results \
+                 -v $(pwd)/allure-report:/api_framework/allure-report \
+                 api-tests \
+                 allure generate allure-results -o allure-report --clean
       - uses: actions/upload-artifact@v4.6.2
         with:
           name: allure-report
