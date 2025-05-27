@@ -29,6 +29,6 @@ jobs:
           python-version: '3.13'
       
       - run: pip install pytest
-      - run: docker-compose up -d
+      - run: docker compose up -d
       - run: docker build -t api-tests .
       - run: docker run --network host api-tests
