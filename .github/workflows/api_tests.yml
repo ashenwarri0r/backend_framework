@@ -59,7 +59,7 @@ jobs:
                  allure generate allure-results -o allure-report --clean
       - uses: actions/upload-pages-artifact@v3.0.1
         with:
-          name: allure-report
+          name: github-pages
           path: ./allure-report
 
   allure-report:
