@@ -1,7 +1,5 @@
 name: API Tests
-
-on:
-  pull_request:
+on: [pull_request]
 
 jobs:
   lint:
@@ -31,7 +29,6 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.13'
-
       - name: Create .env file
         run: |
           cat << 'EOF' > .env
@@ -45,11 +42,9 @@ jobs:
           UNIVERSITY_SERVICE_API_URL=${{ secrets.UNIVERSITY_SERVICE_API_URL }}
           EOF
         shell: bash
-
       - run: docker compose up -d
       - run: docker build -t api-tests .
       - run: docker run --network host api-tests
-
       - name: Prepare report data
         run: |
           docker run --rm \
@@ -57,9 +52,20 @@ jobs:
                  -v $(pwd)/allure-report:/api_framework/allure-report \
                  api-tests \
                  allure generate allure-results -o allure-report --clean
-
       - uses: actions/upload-pages-artifact@v3.0.1
-        if: always()
         with:
           name: allure-report
           path: ./allure-report
+
+  allure-report:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4.3.0
+        with:
+          name: allure-report
+          path: ./allure-report
+      - uses: actions/deploy-pages@v4.0.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
