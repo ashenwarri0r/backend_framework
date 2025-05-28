@@ -52,7 +52,7 @@ jobs:
                  -v $(pwd)/allure-report:/api_framework/allure-report \
                  api-tests \
                  allure generate allure-results -o allure-report --clean
-      - uses: actions/upload-artifact@v4.6.2
+      - uses: actions/upload-pages-artifact@v3.0.1
         with:
           name: allure-report
           path: ./allure-report
@@ -65,6 +65,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: allure-report
+          path: ./allure-report
       - uses: peaceiris/actions-github-pages@v3.1.12
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
